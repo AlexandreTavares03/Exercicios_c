@@ -17,19 +17,49 @@ void LerDados(char sexo[], char cor_olhos[], char cor_cabelo[], int idade[]){
 	printf("=======DADOS DA GALERA========= \n");
 	
 	for(i=0 ; i<5; i++){
-	printf("DIGITE IDADE:"); scanf("%d", &idade[i]);
+	printf("\n DIGITE IDADE:"); scanf("%d", &idade[i]);
 	printf("\n DIGITE SEXO:"); scanf(" %c", &sexo[i]);
-	printf("\n DIGITE COR DO CABELO:"); scanf(" %c", &cor_cabelo[i]);
-	printf("\n DIGITE COR DOS OLHOS: \n"); scanf(" %c", &cor_olhos[i]);
+	printf("\n DIGITE COR DO CABELO (L)- Loiro, (P)- Preto, (C)- Castanho:"); scanf(" %c", &cor_cabelo[i]);
+	printf("\n DIGITE COR DOS OLHOS (A)- Azul, (C)- Castanho:"); scanf(" %c", &cor_olhos[i]);
 	}	
+}
+
+float MediaIdade(int idade[]){
+	int i=0;
+	float media=0;
+	for(i=0; i<5; i++){
+		media = media+idade[i];	
+	}
+	media = media/5;
+	
+	return media;
+}
+
+int MaiorIdade( int idade[]){
+	int i=0;
+	int maior=0;
+	
+	for(i=0; i<5; i++){
+		if(idade[i]>maior){
+			maior = idade[i];	
+		}
+	}
+	return maior;
 }
 
 int main(){
 	
 	char sexo[5], cor_olhos[5], cor_cabelo[5];
 	int idade[5];
+	float media;
+	int maior;
 	
 	LerDados(sexo, cor_olhos, cor_cabelo, idade);
+	media= MediaIdade(idade);
+	maior= MaiorIdade(idade);
+	
+	
+	printf("MAIOR IDADE É: %d", maior);
 	
 	return 0;
 }
