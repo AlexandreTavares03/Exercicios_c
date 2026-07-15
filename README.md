@@ -1,2 +1,3 @@
-# Ex_sub_rotinas_c
-Repositório contendo exercícios de sub-rotinas em C para aperfeiçoamento e resolução de problemas.
+# Exercícios_c
+Repositório contendo exercícios em linguagem C para aperfeiçoamento e resolução de problemas.
+Contém exercícios propostos em sala de aula e exercícios de livros de logica de programação. 
