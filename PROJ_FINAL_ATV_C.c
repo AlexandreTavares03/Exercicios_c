@@ -8,13 +8,43 @@ struct funcionario {
 	float sal;
 };
 void CadastrarFunc(struct funcionario *funcionario){
+	FILE *arquivo;
+	arquivo = fopen("funcionarios.dat", "ab");
+	if (arquivo == NULL){
+		printf("Erro ao abrir arquivo");
+		return;
+	}
 	printf("CODIGO:"); scanf("%d",&funcionario->cod);
 	printf("NOME:"); scanf(" %49[^\n]", funcionario->nome);
 	printf("CARGO:"); scanf(" %29[^\n]", funcionario->cargo);
 	printf("SALARIO:"); scanf("%f", &funcionario->sal);
+	
+	fwrite(funcionario, sizeof(struct funcionario),1,arquivo);
+	fclose(arquivo);
+	
+	printf("funcionario cadastrado com sucesso!!");
 };
 void ListFunci(){
-	printf("Listar funcionario\n");
+	
+	FILE *arquivo;
+	
+	struct funcionario funcionario;
+	arquivo = fopen("funcionarios.dat", "rb");
+	if (arquivo == NULL){
+		printf("Erro ao ler arquivo");
+		return;
+	}
+	
+				printf("\n=== LISTA DE FUNCIONARIOS===\n");
+	
+	while(fread(&funcionario,sizeof(struct funcionario), 1, arquivo) ==1){
+				
+				printf("Codigo: %d\n", funcionario.cod);
+				printf("Nome: %s\n", funcionario.nome);
+				printf("Cargo: %s\n", funcionario.cargo);
+				printf("Salario: %.2f\n", funcionario.sal);
+	}
+	fclose (arquivo);
 };
 void BuscFunc(){
 	printf("Buscar funcionário\n");
@@ -72,7 +102,7 @@ int main (){
 				Sair();
 				break;	
 			default:
-				printf("opcao invalida\n");		
+				printf("opcao invalida\n");
 		}		
 	}
 			while (opcao !=0);
