@@ -45,10 +45,42 @@ void ListFunci(){
 				printf("Salario: %.2f\n", funcionario.sal);
 	}
 	fclose (arquivo);
-};
+}
+
 void BuscFunc(){
-	printf("Buscar funcionário\n");
-};
+	int cod;
+	int encontrou= 0;
+	
+	FILE *arquivo;
+	struct funcionario funcionario;
+	arquivo = fopen("funcionarios.dat", "rb");
+		if (arquivo == NULL){
+		printf("Erro ao ler arquivo");
+		return;
+	}
+		
+	printf("INFORME O COD DO FUNCIONARIO QUE ESTA PROCURANDO:"); scanf("%d", &cod);
+	
+	while(fread(&funcionario,sizeof(struct funcionario),1,arquivo) == 1){
+
+        if(funcionario.cod == cod){
+            printf("======FUNCIONÁRIO ENCONTRADO===== \n:");
+            printf("Codigo: %d\n", funcionario.cod);
+			printf("Nome: %s\n", funcionario.nome);
+			printf("Cargo: %s\n", funcionario.cargo);
+			printf("Salario: %.2f\n", funcionario.sal);
+			
+			encontrou=1;
+			break;
+        }
+    }
+		if (encontrou==0){
+			printf("FUNCIONARIO INEXISTENTE!!");
+		}
+		
+    fclose(arquivo);
+}
+
 void AltFunc(){
 	printf("Alterar funcionario\n");
 };
